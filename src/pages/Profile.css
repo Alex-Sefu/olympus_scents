@@ -1,0 +1,72 @@
+.profile-page { max-width: 860px; margin: 0 auto; padding: 32px 48px 80px; }
+
+/* Hero */
+.profile-hero {
+  background: var(--bg-white); border: 1.5px solid var(--bd-b);
+  border-radius: 20px; padding: 28px; display: flex;
+  align-items: center; gap: 20px; margin-bottom: 32px;
+  box-shadow: 0 2px 10px rgba(59,130,246,0.07);
+  flex-wrap: wrap;
+}
+.profile-avatar {
+  width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+  background: var(--bg-pale); border: 2px solid var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif; font-size: 26px; font-weight: 600;
+  color: var(--blue-dk);
+}
+.profile-name { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 500; color: var(--text-dk); margin: 0 0 4px; }
+.profile-email { font-size: 13px; color: var(--text-lo); margin: 0 0 8px; }
+.profile-role {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--bg-pale); color: var(--blue-dk);
+  border: 1px solid var(--bd-b); border-radius: 999px; padding: 3px 12px;
+}
+.profile-role--editor { background: var(--gold-cream); color: var(--gold-dk); border-color: var(--bd-g); }
+.profile-signout { margin-left: auto; padding: 10px 20px; font-size: 11px; }
+
+/* Section */
+.profile-section-title { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 500; color: var(--text-dk); margin: 0 0 18px; }
+.profile-loading { display: flex; justify-content: center; padding: 40px; }
+.profile-empty { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 60px 20px; color: var(--text-lo); font-size: 15px; }
+
+/* Comenzi */
+.profile-orders { display: flex; flex-direction: column; gap: 12px; }
+
+.profile-order-card {
+  background: var(--bg-white); border: 1.5px solid var(--bd-b);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(59,130,246,0.05);
+  transition: border-color 0.2s;
+}
+.profile-order-card:hover { border-color: var(--blue-lt); }
+
+.profile-order-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; cursor: pointer; gap: 12px; flex-wrap: wrap;
+}
+.profile-order-meta { display: flex; flex-direction: column; gap: 3px; }
+.profile-order-id { font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 500; color: var(--text-dk); }
+.profile-order-date { font-size: 12px; color: var(--text-lo); }
+
+.profile-order-right { display: flex; align-items: center; gap: 12px; }
+.profile-order-status { font-size: 11px; font-weight: 600; border-radius: 999px; padding: 3px 12px; letter-spacing: 0.08em; }
+.profile-order-total { font-size: 1rem; font-weight: 700; color: var(--gold); }
+.profile-order-toggle { font-size: 11px; color: var(--text-lo); }
+
+.profile-order-body { padding: 16px 20px; border-top: 1px solid var(--bg-pale); background: var(--bg-0); }
+.profile-order-shipping { font-size: 12px; color: var(--text-lo); margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+.profile-shipping-label { font-weight: 600; color: var(--text-md); }
+
+.profile-order-items { display: flex; flex-direction: column; gap: 8px; }
+.profile-order-item { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 8px 0; border-bottom: 1px solid var(--bg-1); }
+.profile-order-item:last-child { border-bottom: none; }
+.poi-name { flex: 1; color: var(--text-dk); font-weight: 500; }
+.poi-qty { color: var(--text-lo); }
+.poi-price { font-weight: 700; color: var(--gold); }
+
+@media (max-width: 640px) {
+  .profile-page { padding: 20px 16px 60px; }
+  .profile-hero { flex-direction: column; align-items: flex-start; }
+  .profile-signout { margin-left: 0; }
+}

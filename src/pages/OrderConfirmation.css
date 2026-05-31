@@ -1,0 +1,39 @@
+.confirm-page { max-width: 640px; margin: 0 auto; padding: 48px 24px 80px; text-align: center; }
+
+.confirm-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--green-pale); border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; color: var(--green); margin: 0 auto 20px;
+  font-weight: 700;
+}
+
+.confirm-title { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 500; color: var(--text-dk); margin: 0 0 10px; }
+.confirm-sub { font-size: 14px; color: var(--text-lo); margin: 0 0 32px; line-height: 1.7; }
+
+.confirm-card {
+  background: var(--bg-white); border: 1.5px solid var(--bd-b);
+  border-radius: 20px; padding: 28px; text-align: left;
+  box-shadow: 0 4px 16px rgba(59,130,246,0.08);
+  margin-bottom: 28px;
+}
+
+.confirm-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.confirm-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.confirm-meta-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-lo); }
+.confirm-meta-val { font-size: 14px; font-weight: 600; color: var(--text-dk); font-family: 'DM Sans', sans-serif; }
+.confirm-status { font-size: 13px; font-weight: 600; color: var(--green); background: var(--green-pale); border-radius: 999px; padding: 3px 12px; display: inline-block; }
+.confirm-total { font-size: 1.2rem; font-weight: 700; color: var(--gold); }
+
+.confirm-divider { height: 1px; background: var(--bg-pale); margin: 20px 0; }
+
+.confirm-shipping p { font-size: 13px; color: var(--text-md); margin: 3px 0; line-height: 1.6; }
+.confirm-section-lbl { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-lo); margin: 0 0 10px; }
+
+.confirm-items { display: flex; flex-direction: column; gap: 8px; }
+.confirm-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.confirm-item-name { flex: 1; color: var(--text-dk); font-weight: 500; }
+.confirm-item-qty { color: var(--text-lo); }
+.confirm-item-price { font-weight: 700; color: var(--gold); }
+
+.confirm-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }

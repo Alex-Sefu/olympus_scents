@@ -1,0 +1,5 @@
+.error-state { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 60px 20px; text-align: center; }
+.error-state-icon { font-size: 44px; opacity: .6; }
+.error-state-title { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 500; color: var(--text-dk); margin: 0; }
+.error-state-msg { font-size: 14px; color: var(--text-lo); margin: 0; line-height: 1.7; }
+.error-state-btn { padding: 10px 24px; font-size: 12px; }

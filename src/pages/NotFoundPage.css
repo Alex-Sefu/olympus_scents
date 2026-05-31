@@ -1,0 +1,13 @@
+.nf-page {
+  min-height: calc(100vh - 62px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 20px;
+  background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(59,130,246,0.08) 0%, transparent 70%);
+}
+.nf-content { text-align: center; max-width: 480px; }
+.nf-god { font-size: 72px; margin-bottom: 8px; animation: nf-float 3s ease-in-out infinite; }
+@keyframes nf-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+.nf-code { font-family: 'Cinzel', serif; font-size: 6rem; font-weight: 600; color: var(--blue-dk); margin: 0; line-height: 1; opacity: .15; }
+.nf-title { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 500; color: var(--text-dk); margin: 0 0 12px; }
+.nf-sub { font-size: 14px; color: var(--text-lo); line-height: 1.8; margin: 0 0 32px; font-weight: 300; }
+.nf-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }

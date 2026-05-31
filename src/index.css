@@ -1,0 +1,60 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=DM+Sans:wght@300;400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Backgrounds */
+  --bg-0:     #F0F6FF;
+  --bg-1:     #E4EEFF;
+  --bg-pale:  #DBEAFE;
+  --bg-white: #FFFFFF;
+
+  /* Blue — principal color */
+  --blue-deep: #1E3A6E;
+  --blue-dk:   #1D4ED8;
+  --blue:      #3B82F6;
+  --blue-lt:   #93C5FD;
+
+  /* Gold — accent */
+  --gold-dk:   #7C4A0A;
+  --gold:      #B45309;
+  --gold-md:   #D97706;
+  --gold-lt:   #F59E0B;
+  --gold-pale: #FDE68A;
+  --gold-cream:#FEF3C7;
+
+  /* Danger */
+  --red-pale:  #FEE2E2;
+  --red:       #EF4444;
+  --red-dk:    #991B1B;
+
+  /* Success */
+  --green-pale:#DCFCE7;
+  --green:     #16A34A;
+
+  /* Text */
+  --text-dk:   #0F1B35;
+  --text-md:   #2E4060;
+  --text-lo:   #64748B;
+
+  /* Borders */
+  --bd-b:  rgba(59,130,246,0.25);
+  --bd-bh: rgba(59,130,246,0.65);
+  --bd-g:  rgba(180,83,9,0.25);
+  --bd-gh: rgba(124,74,10,0.65);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg-0);
+  color: var(--text-dk);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cinzel', serif;
+}

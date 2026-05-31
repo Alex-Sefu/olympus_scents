@@ -1,0 +1,35 @@
+.tag-pill {
+  display: inline-block;
+  padding: 4px 13px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  border: 1px solid transparent;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.tag-pill--varf {
+  background: rgba(75,184,212,0.1);
+  border-color: rgba(75,184,212,0.28);
+  color: #4BB8D4;
+}
+
+.tag-pill--baza {
+  background: rgba(201,160,80,0.1);
+  border-color: rgba(201,160,80,0.28);
+  color: #E0B96A;
+}
+
+.tag-pill--tip {
+  background: rgba(244,237,216,0.08);
+  border-color: rgba(244,237,216,0.2);
+  color: #D4BC8A;
+}
+
+.tag-pill--default {
+  background: rgba(122,168,186,0.1);
+  border-color: rgba(122,168,186,0.22);
+  color: #7AA8BA;
+}
