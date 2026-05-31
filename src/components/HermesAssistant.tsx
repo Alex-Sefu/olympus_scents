@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { useHermes } from '../context/HermesContext';
-import hermesMascota from '../assets/sticker_hermes.jpeg';
 import './HermesAssistant.css';
 
 interface Message {
