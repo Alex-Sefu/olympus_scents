@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase';
 import type { Parfum } from '../types';
 import { COLLECTIONS } from '../data/collections';
 import { useHermes } from '../context/HermesContext';
-import { HermesHeroSVG } from '../components/HermesAssistant';
+import hermesMascota from '../assets/hermes_sticker.png';
 import PerfumeCard from '../components/PerfumeCard';
 import './Home.css';
 
@@ -47,14 +47,10 @@ function HermesSpeechBubble({ onOpen }: { onOpen: () => void }) {
 
   return (
     <div className="hermes-bubble">
-      {/* Coadă bubble */}
-      <div className="hermes-bubble__tail" />
-      {/* Text cu cursor animat */}
       <p className="hermes-bubble__text">
         {displayed}
         {!done && <span className="hermes-bubble__cursor">|</span>}
       </p>
-      {/* Buton răspunde — apare după ce textul e complet */}
       {done && (
         <button className="hermes-bubble__reply" onClick={onOpen}>
           Răspunde lui Hermes →
@@ -144,22 +140,20 @@ export default function Home() {
 
         {/* Hermes + speech bubble */}
         <div className="home-hero__visual">
-          <div className="home-hero__hermes-wrap">
-            {/* Speech bubble */}
+          <div className="hermes-assistant-container">
+            {/* Bula de text în stânga */}
             <HermesSpeechBubble onOpen={() => setHermesOpen(true)} />
 
-            {/* Figura Hermes */}
-            <button
-              className="home-hero__hermes-figure"
-              onClick={() => setHermesOpen(true)}
-              aria-label="Deschide chat cu Hermes"
-            >
-              <HermesHeroSVG size={290} />
-              <div className="home-hero__hermes-label">
-                <span className="home-hero__hermes-name">Hermes</span>
-                <span className="home-hero__hermes-role">Mesagerul Olimpului · AI</span>
-              </div>
-            </button>
+            {/* Stickerul Hermes — crop text sus/jos cu wrapper overflow hidden */}
+            <div className="hermes-sticker-wrap">
+              <img
+                src={hermesMascota}
+                alt="Hermes Mascota"
+                className="hermes-sticker-avatar"
+                onClick={() => setHermesOpen(true)}
+                title="Cere sfatul lui Hermes"
+              />
+            </div>
           </div>
         </div>
       </section>

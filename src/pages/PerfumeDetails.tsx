@@ -194,7 +194,7 @@ export default function PerfumeDetails() {
                 className="btn btn-gold details-cart-btn"
                 onClick={() => navigate('/signin')}
               >
-                Autentificeă-te pentru a cumpăra
+                Autentifică-te pentru a cumpăra
               </button>
             )}
             {isEditor && (

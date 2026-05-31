@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useHermes } from '../context/HermesContext';
+import hermesMascota from '../assets/sticker_hermes.jpeg';
 import './HermesAssistant.css';
 
 interface Message {
@@ -84,14 +85,18 @@ export default function HermesAssistant() {
             {messages.map(msg => (
               <div key={msg.id} className={`hermes-msg hermes-msg--${msg.role}`}>
                 {msg.role === 'hermes' && (
-                  <div className="hermes-msg-avatar"><HermesSVG size={26} /></div>
+                  <div className="hermes-msg-avatar">
+                    <HermesSVG size={26} />
+                  </div>
                 )}
                 <div className="hermes-msg-bubble">{msg.text}</div>
               </div>
             ))}
             {typing && (
               <div className="hermes-msg hermes-msg--hermes">
-                <div className="hermes-msg-avatar"><HermesSVG size={26} /></div>
+                <div className="hermes-msg-avatar">
+                  <HermesSVG size={26} />
+                </div>
                 <div className="hermes-msg-bubble hermes-typing">
                   <span /><span /><span />
                 </div>
