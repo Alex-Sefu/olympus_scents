@@ -155,7 +155,7 @@ export default function AddEditPerfume() {
     setLoading(true);
     setErrorMsg(null);
 
-    const cleanForm = sanitizeForm(form as unknown as Record<string, unknown>) as typeof form;
+    const cleanForm = sanitizeForm(form) as FormData;
     const payload = {
       nume_parfum: cleanForm.nume_parfum.trim(),
       brand: cleanForm.brand.trim(),
