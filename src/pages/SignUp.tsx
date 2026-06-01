@@ -2,11 +2,13 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './Auth.css';
 
 export default function SignUp() {
   const { signUp, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  usePageTitle('Creare Cont');
 
   const [fullName, setFullName]         = useState('');
   const [email, setEmail]               = useState('');

@@ -5,6 +5,8 @@ import { supabase } from '../lib/supabase';
 import { useAuth } from '../hooks/useAuth';
 import type { Parfum } from '../types';
 import { COLLECTIONS } from '../data/collections';
+import { usePageTitle } from '../hooks/usePageTitle';
+import { sanitizeForm } from '../lib/sanitize';
 import './AddEditPerfume.css';
 
 const TIP_OPTIONS = ['Parfum', 'Eau de Parfum', 'Eau de Toilette', 'Eau de Cologne', 'Eau Fraîche'];
@@ -33,6 +35,7 @@ export default function AddEditPerfume() {
   const navigate = useNavigate();
   const { user, isEditor } = useAuth();
   const isEditMode = Boolean(id);
+  usePageTitle(isEditMode ? 'Editează Parfum' : 'Adaugă Parfum Nou');
 
   const [form, setForm] = useState<FormData>(EMPTY_FORM);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -152,18 +155,19 @@ export default function AddEditPerfume() {
     setLoading(true);
     setErrorMsg(null);
 
+    const cleanForm = sanitizeForm(form as unknown as Record<string, unknown>) as typeof form;
     const payload = {
-      nume_parfum: form.nume_parfum.trim(),
-      brand: form.brand.trim(),
-      creator: form.creator.trim() || null,
-      tip_parfum: form.tip_parfum || null,
-      note_varf: form.note_varf.trim() || null,
-      note_baza: form.note_baza.trim() || null,
-      pret: Number(form.pret),
-      stoc: Number(form.stoc),
-      anul_lansarii: form.anul_lansarii ? Number(form.anul_lansarii) : null,
+      nume_parfum: cleanForm.nume_parfum.trim(),
+      brand: cleanForm.brand.trim(),
+      creator: cleanForm.creator.trim() || null,
+      tip_parfum: cleanForm.tip_parfum || null,
+      note_varf: cleanForm.note_varf.trim() || null,
+      note_baza: cleanForm.note_baza.trim() || null,
+      pret: Number(cleanForm.pret),
+      stoc: Number(cleanForm.stoc),
+      anul_lansarii: cleanForm.anul_lansarii ? Number(cleanForm.anul_lansarii) : null,
       created_by: user?.id,
-      colectie: form.colectie || null,
+      colectie: cleanForm.colectie || null,
     };
 
     if (isEditMode && id) {

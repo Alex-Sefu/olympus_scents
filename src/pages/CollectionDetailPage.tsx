@@ -7,6 +7,7 @@ import type { Parfum } from '../types';
 import { COLLECTIONS } from '../data/collections';
 import { formatPrice, getInitial } from '../lib/utils';
 import TagPill from '../components/TagPill';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './CollectionDetailPage.css';
 
 function getGodSymbol(id: string): string {
@@ -23,6 +24,8 @@ export default function CollectionDetailPage() {
   const [loading, setLoading]     = useState(true);
 
   const collection = COLLECTIONS.find(c => c.id === id);
+
+  usePageTitle(collection ? `Colecția ${collection.god} — ${collection.season}` : 'Colecție');
 
   useEffect(() => {
     if (!collection) { navigate('/collections'); return; }

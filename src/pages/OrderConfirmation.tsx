@@ -3,12 +3,14 @@ import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import type { Order } from '../types';
 import { formatPrice, formatDate } from '../lib/utils';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './OrderConfirmation.css';
 
 export default function OrderConfirmation() {
   const { id } = useParams<{ id: string }>();
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
+  usePageTitle('Comandă Confirmată');
 
   useEffect(() => {
     if (!id) return;

@@ -618,3 +618,145 @@
 @media (max-width: 400px) {
   .home-grid { grid-template-columns: 1fr; }
 }
+
+/* ── VIEW TOGGLE ── */
+.view-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-pale);
+  border: 1.5px solid var(--bd-b);
+  border-radius: 10px;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.view-toggle-btn {
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-lo);
+  transition: background 0.15s, color 0.15s;
+}
+.view-toggle-btn:hover { background: white; color: var(--blue-dk); }
+.view-toggle-btn--active {
+  background: white;
+  color: var(--blue-dk);
+  box-shadow: 0 1px 4px rgba(59,130,246,0.12);
+}
+
+/* ── GRID MODES ── */
+.home-grid--4 { grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.home-grid--2 { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.home-grid--1 { grid-template-columns: 1fr; gap: 16px; }
+
+.home-grid--1 .perfume-card { flex-direction: row; max-height: 180px; }
+.home-grid--1 .perfume-card__image { width: 140px; height: 180px; flex-shrink: 0; aspect-ratio: unset; }
+.home-grid--1 .perfume-card__body { flex: 1; padding: 20px 24px; display: flex; flex-direction: column; justify-content: space-between; }
+.home-grid--1 .perfume-card__name { font-size: 1.2rem; }
+.home-grid--1 .perfume-card__actions { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+
+@media (max-width: 900px) {
+  .home-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .home-grid--2 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .home-grid--4, .home-grid--2, .home-grid--1 { grid-template-columns: 1fr; }
+  .home-grid--1 .perfume-card { flex-direction: column; max-height: unset; }
+  .home-grid--1 .perfume-card__image { width: 100%; height: auto; aspect-ratio: 3/4; }
+  .view-toggle { display: none; }
+}
+
+/* ── SEARCH BANNER ── */
+.home-search-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-pale);
+  border: 1.5px solid var(--bd-b);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--text-dk);
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+/* ── PRICE FILTER ── */
+.price-filter {
+  padding: 0 48px 16px;
+}
+
+.price-filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.price-filter-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-lo); font-family: 'DM Sans', sans-serif;
+}
+
+.price-filter-values {
+  font-size: 13px; font-weight: 600;
+  color: var(--gold); font-family: 'DM Sans', sans-serif;
+}
+
+.price-slider-wrap {
+  position: relative;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.price-slider {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  -webkit-appearance: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 2.5px solid var(--blue);
+  cursor: pointer;
+  pointer-events: all;
+  box-shadow: 0 2px 8px rgba(59,130,246,0.25);
+  transition: border-color 0.15s, transform 0.15s;
+}
+.price-slider::-webkit-slider-thumb:hover {
+  border-color: var(--blue-dk);
+  transform: scale(1.15);
+}
+
+.price-track {
+  position: absolute;
+  left: 0; right: 0;
+  height: 4px;
+  background: var(--bg-pale);
+  border-radius: 999px;
+  z-index: 1;
+}
+
+.price-track-fill {
+  position: absolute;
+  top: 0; bottom: 0;
+  background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+  border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+  .price-filter { padding: 0 20px 16px; }
+}

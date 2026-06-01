@@ -8,6 +8,7 @@ import type { Parfum } from '../types';
 import { formatPrice, splitNotes } from '../lib/utils';
 import TagPill from '../components/TagPill';
 import PerfumeCard from '../components/PerfumeCard';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './PerfumeDetails.css';
 
 export default function PerfumeDetails() {
@@ -20,6 +21,8 @@ export default function PerfumeDetails() {
   const [similare, setSimilare] = useState<Parfum[]>([]);
   const [loading, setLoading] = useState(true);
   const [qty, setQty] = useState(1);
+
+  usePageTitle(parfum ? `${parfum.nume_parfum} — ${parfum.brand}` : 'Detalii Parfum');
 
   useEffect(() => {
     if (!id) return;

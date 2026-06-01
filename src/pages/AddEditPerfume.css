@@ -287,3 +287,9 @@
   .aep-image-preview { width: 100%; }
   .aep-image-preview img { width: 100%; height: 200px; }
 }
+
+@media (max-width: 640px) {
+  .aep-page { padding: 16px 14px 60px; }
+  .aep-grid { grid-template-columns: 1fr !important; }
+  .aep-footer { flex-direction: column; }
+}

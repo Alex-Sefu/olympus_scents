@@ -364,3 +364,12 @@
   margin-top: 6px;
   word-break: break-all;
 }
+
+@media (max-width: 640px) {
+  .ed-page { padding: 16px 12px 60px; }
+  .ed-stats { grid-template-columns: 1fr 1fr; }
+  .ed-table-wrap { overflow-x: auto; }
+  .ed-table { min-width: 640px; }
+  .ed-order-header { flex-direction: column; align-items: flex-start; }
+  .ed-order-right { width: 100%; justify-content: space-between; }
+}

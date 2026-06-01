@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase';
 import { useAuth } from '../hooks/useAuth';
 import type { Parfum } from '../types';
 import { formatPrice } from '../lib/utils';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './EditorDashboard.css';
 
 type SortCol = 'created_at' | 'nume_parfum' | 'brand' | 'pret' | 'stoc';
@@ -12,6 +13,7 @@ type SortDir = 'asc' | 'desc';
 export default function EditorDashboard() {
   const { isEditor } = useAuth();
   const navigate = useNavigate();
+  usePageTitle('Dashboard Editor');
 
   // Tab state
   const [activeTab, setActiveTab] = useState<'parfumuri' | 'comenzi'>('parfumuri');

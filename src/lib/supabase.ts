@@ -7,4 +7,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Supabase URL și Anon Key trebuie să fie definite în .env');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    redirectTo: `${window.location.origin}/reset-password`,
+  },
+});

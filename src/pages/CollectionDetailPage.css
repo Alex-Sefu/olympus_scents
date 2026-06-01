@@ -406,3 +406,14 @@
 @media (max-width: 400px) {
   .cdp-grid { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 640px) {
+  .cdp-hero-content { padding: 20px 16px 32px; }
+  .cdp-god-avatar-big { width: 72px; height: 72px; font-size: 32px; }
+  .cdp-god-name { font-size: 2rem; }
+  .cdp-body { padding: 20px 16px 60px; }
+  .cdp-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+}
+@media (max-width: 400px) {
+  .cdp-grid { grid-template-columns: 1fr; }
+}

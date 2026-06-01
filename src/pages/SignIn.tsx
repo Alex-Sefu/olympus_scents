@@ -2,17 +2,21 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './Auth.css';
 
 export default function SignIn() {
   const { signIn, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  usePageTitle('Autentificare');
 
-  const [email, setEmail]           = useState('');
-  const [password, setPassword]     = useState('');
+  const [email, setEmail]               = useState('');
+  const [password, setPassword]         = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError]           = useState<string | null>(null);
-  const [loading, setLoading]       = useState(false);
+  const [error, setError]               = useState<string | null>(null);
+  const [loading, setLoading]           = useState(false);
+  const [attempts, setAttempts]         = useState(0);
+  const [blockedUntil, setBlockedUntil] = useState<number | null>(null);
 
   if (isAuthenticated) {
     navigate('/');
@@ -21,13 +25,33 @@ export default function SignIn() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+
+    // Verifică blocare temporară
+    if (blockedUntil && Date.now() < blockedUntil) {
+      const secs = Math.ceil((blockedUntil - Date.now()) / 1000);
+      setError(`Prea multe încercări. Încearcă din nou în ${secs} secunde.`);
+      return;
+    }
+
     setError(null);
     setLoading(true);
+
     const { error } = await signIn(email, password);
+
     if (error) {
-      setError(error);
+      const newAttempts = attempts + 1;
+      setAttempts(newAttempts);
+      if (newAttempts >= 5) {
+        setBlockedUntil(Date.now() + 30_000);
+        setAttempts(0);
+        setError('Prea multe încercări eșuate. Contul e blocat temporar 30 secunde.');
+      } else {
+        setError(`${error} (${5 - newAttempts} încercări rămase)`);
+      }
       setLoading(false);
     } else {
+      setAttempts(0);
+      setBlockedUntil(null);
       navigate('/');
     }
   }
@@ -85,7 +109,11 @@ export default function SignIn() {
             </Link>
           </div>
 
-          <button type="submit" className="auth-btn" disabled={loading}>
+          <button
+            type="submit"
+            className="auth-btn"
+            disabled={loading || !!(blockedUntil && Date.now() < blockedUntil)}
+          >
             {loading ? 'Se conectează...' : 'Conectare'}
           </button>
         </form>

@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { COLLECTIONS } from '../data/collections';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './CollectionsPage.css';
 
 function getGodSymbol(id: string): string {
   const symbols: Record<string, string> = {
-    artemis: '🌿',
+    artemis: '🌙',
     poseidon: '🔱',
     dionysos: '🍇',
     zeus: '⚡',
@@ -13,6 +14,7 @@ function getGodSymbol(id: string): string {
 }
 
 export default function CollectionsPage() {
+  usePageTitle('Colecțiile Olimpului');
   return (
     <div className="cp-page">
 

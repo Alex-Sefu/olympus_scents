@@ -19,13 +19,14 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const INACTIVITY_LIMIT = 30 * 60 * 1000; // 30 minute
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch profil + rol din tabela profiles
   async function fetchProfile(userId: string) {
     const { data, error } = await supabase
       .from('profiles')
@@ -36,7 +37,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    // Sesiune inițială
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
@@ -44,7 +44,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     });
 
-    // Listener pentru schimbări de sesiune (login/logout)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setSession(session);
@@ -57,7 +56,40 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     );
 
-    return () => subscription.unsubscribe();
+    // ── Inactivity auto-logout ──
+    let inactivityTimer: ReturnType<typeof setTimeout>;
+
+    function resetInactivityTimer() {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(async () => {
+        await supabase.auth.signOut();
+      }, INACTIVITY_LIMIT);
+    }
+
+    const activityEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+    activityEvents.forEach(ev => document.addEventListener(ev, resetInactivityTimer, { passive: true }));
+    resetInactivityTimer();
+
+    // ── Visibility change — verifică sesiunea când tab-ul redevine activ ──
+    function handleVisibilityChange() {
+      if (document.visibilityState === 'visible') {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          if (!session) {
+            setUser(null);
+            setProfile(null);
+            setSession(null);
+          }
+        });
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      clearTimeout(inactivityTimer);
+      activityEvents.forEach(ev => document.removeEventListener(ev, resetInactivityTimer));
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      subscription.unsubscribe();
+    };
   }, []);
 
   async function signIn(email: string, password: string) {
@@ -80,14 +112,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const value: AuthContextType = {
-    user,
-    session,
-    profile,
+    user, session, profile,
     role: profile?.role ?? null,
-    loading,
-    signIn,
-    signUp,
-    signOut,
+    loading, signIn, signUp, signOut,
     isEditor: profile?.role === 'editor',
     isAuthenticated: !!user,
   };
@@ -95,7 +122,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-// Hook de utilizat în orice componentă
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) throw new Error('useAuth trebuie folosit în interiorul AuthProvider');

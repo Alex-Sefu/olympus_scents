@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabase';
 import { useAuth } from '../hooks/useAuth';
 import { useCart } from '../context/CartContext';
 import { formatPrice } from '../lib/utils';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './Checkout.css';
 
 interface ShippingForm {
@@ -26,6 +27,7 @@ export default function Checkout() {
   const { user, profile } = useAuth();
   const { items, total, clearCart } = useCart();
   const navigate = useNavigate();
+  usePageTitle('Finalizare Comandă');
 
   const [shipping, setShipping] = useState<ShippingForm>({
     ...EMPTY_SHIPPING,

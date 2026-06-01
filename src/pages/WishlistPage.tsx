@@ -7,6 +7,7 @@ import { useCart } from '../context/CartContext';
 import type { Parfum } from '../types';
 import { formatPrice, getInitial } from '../lib/utils';
 import WishlistButton from '../components/WishlistButton';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './WishlistPage.css';
 
 export default function WishlistPage() {
@@ -15,6 +16,7 @@ export default function WishlistPage() {
   const { addItem } = useCart();
   const [parfumuri, setParfumuri] = useState<Parfum[]>([]);
   const [loading, setLoading] = useState(true);
+  usePageTitle('Favoritele Mele');
 
   useEffect(() => {
     if (!user || wishlistIds.size === 0) { setParfumuri([]); setLoading(false); return; }

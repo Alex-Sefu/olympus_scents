@@ -58,3 +58,12 @@ body {
 h1, h2, h3, h4 {
   font-family: 'Cinzel', serif;
 }
+
+/* ── RESPONSIVE GLOBAL ── */
+input, select, textarea { font-size: 16px !important; }
+@media (min-width: 768px) { input, select, textarea { font-size: 13px !important; } }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(59,130,246,0.25); border-radius: 999px; }
+.navbar { padding-left: max(40px, env(safe-area-inset-left)); padding-right: max(40px, env(safe-area-inset-right)); }
+.hermes-fab { bottom: max(28px, env(safe-area-inset-bottom, 28px)); right: 28px; }

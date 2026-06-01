@@ -1,8 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './NotFoundPage.css';
 
 export default function NotFoundPage() {
   const navigate = useNavigate();
+  usePageTitle('Pagina Nu Există — 404');
   return (
     <div className="nf-page">
       <div className="nf-content">

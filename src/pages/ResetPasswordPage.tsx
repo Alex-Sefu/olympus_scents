@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './Auth.css';
 
 export default function ResetPasswordPage() {
@@ -12,6 +13,7 @@ export default function ResetPasswordPage() {
   const [loading, setLoading]   = useState(false);
   const [error, setError]       = useState<string | null>(null);
   const [success, setSuccess]   = useState(false);
+  usePageTitle('Parolă Nouă');
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
