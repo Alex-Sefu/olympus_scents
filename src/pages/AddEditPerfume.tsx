@@ -6,7 +6,7 @@ import { useAuth } from '../hooks/useAuth';
 import type { Parfum } from '../types';
 import { COLLECTIONS } from '../data/collections';
 import { usePageTitle } from '../hooks/usePageTitle';
-import { sanitizeForm } from '../lib/sanitize';
+import { sanitizeText } from '../lib/sanitize';
 import './AddEditPerfume.css';
 
 const TIP_OPTIONS = ['Parfum', 'Eau de Parfum', 'Eau de Toilette', 'Eau de Cologne', 'Eau Fraîche'];
@@ -155,19 +155,18 @@ export default function AddEditPerfume() {
     setLoading(true);
     setErrorMsg(null);
 
-    const cleanForm = sanitizeForm(form) as FormData;
     const payload = {
-      nume_parfum: cleanForm.nume_parfum.trim(),
-      brand: cleanForm.brand.trim(),
-      creator: cleanForm.creator.trim() || null,
-      tip_parfum: cleanForm.tip_parfum || null,
-      note_varf: cleanForm.note_varf.trim() || null,
-      note_baza: cleanForm.note_baza.trim() || null,
-      pret: Number(cleanForm.pret),
-      stoc: Number(cleanForm.stoc),
-      anul_lansarii: cleanForm.anul_lansarii ? Number(cleanForm.anul_lansarii) : null,
+      nume_parfum: sanitizeText(form.nume_parfum.trim()),
+      brand: sanitizeText(form.brand.trim()),
+      creator: sanitizeText(form.creator.trim()) || null,
+      tip_parfum: form.tip_parfum || null,
+      note_varf: sanitizeText(form.note_varf.trim()) || null,
+      note_baza: sanitizeText(form.note_baza.trim()) || null,
+      pret: Number(form.pret),
+      stoc: Number(form.stoc),
+      anul_lansarii: form.anul_lansarii ? Number(form.anul_lansarii) : null,
       created_by: user?.id,
-      colectie: cleanForm.colectie || null,
+      colectie: form.colectie || null,
     };
 
     if (isEditMode && id) {
